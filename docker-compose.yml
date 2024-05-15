@@ -2,6 +2,7 @@ services:
   db:
     image: mysql:8.0
     container_name: db
+    hostname: db
     restart: unless-stopped
     env_file: .env
     environment:
@@ -20,6 +21,7 @@ services:
       - db
     image: wordpress:6.5.0-php8.1-fpm-alpine
     container_name: wordpress
+    hostname: wordpress
     restart: unless-stopped
     env_file: .env
     environment:
@@ -27,8 +29,6 @@ services:
       - WORDPRESS_DB_USER=$MYSQL_USER
       - WORDPRESS_DB_PASSWORD=$MYSQL_PASSWORD
       - WORDPRESS_DB_NAME=wordpress
-    ports:
-      - 9000:9000
     volumes:
       - ./volumes/wordpress:/var/www/html
     networks:
@@ -36,11 +36,12 @@ services:
         ipv4_address: 172.10.0.20
 
 
-  webserver:
+  nginx:
     depends_on:
       - wordpress
     image: nginx:1.25.4-alpine
-    container_name: webserver
+    container_name: nginx
+    hostname: nginx
     restart: unless-stopped
     ports:
       - 80:80
