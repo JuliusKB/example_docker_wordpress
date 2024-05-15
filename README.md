@@ -13,7 +13,7 @@ docker compose up
 ```
 
 ### Commands
-```
+```shell
 docker compose up                   # run all containers
 docker compose up -d                # run all containers in daemon (background)
 docker compose down                 # stop and remove all containers
