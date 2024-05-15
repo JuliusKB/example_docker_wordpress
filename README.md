@@ -7,8 +7,7 @@
 Run from the repo root
 
 ```shell
-chmod +x init.sh 
-./init.sh 
+chmod +x init.sh && ./init.sh # not strictly necessary (docker compose should also create folders by itself) 
 docker compose up
 ```
 
@@ -19,4 +18,7 @@ docker compose up -d                # run all containers in daemon (background)
 docker compose down                 # stop and remove all containers
 docker compose stop                 # stop all contains
 docker logs -f <container_name>     # follow logs of specific container
+docker stats			    # check stats of containers
+docker ps			    # check running containers (add -a to also see stopped containers)
+docker images			    # check locally available docker images
 ```
